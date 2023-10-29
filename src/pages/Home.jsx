@@ -4,10 +4,19 @@ import CalendarEvent from '../components/Calendar'
 const Home = () => {
   return (
     <>
-        <div>BestBuy Calendar Reminder</div>
-        <CalendarEvent/>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <h1>BestBuy Calendar Reminder</h1>
+        <CalendarEvent />
+      </div>
     </>
-  )
+  );
 }
 
 export default Home

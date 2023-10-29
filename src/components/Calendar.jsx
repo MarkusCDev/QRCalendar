@@ -63,28 +63,66 @@ END:VCALENDAR
 
   return (
     <div>
-        <div><label>Title:</label>
-            <input type="text" name="title" value={eventDetails.title} onChange={handleInputChange}/>
-        </div>
+      <div>
+        <label>Title:</label>
+        <input
+          type="text"
+          name="title"
+          value={eventDetails.title}
+          onChange={handleInputChange}
+        />
+      </div>
 
-        <div><label>Description:</label>
-            <select name="description" value={eventDetails.description} onChange={handleInputChange}>
-            {predefinedDescriptions.map((desc, index) => (
-                <option key={index} value={desc}> {desc} </option>))}
-            </select>
-            {eventDetails.description === "Custom..." && (
-            <input type="text" name="customDescription" value={eventDetails.customDescription} placeholder="Enter custom description" onChange={handleInputChange}/>)}
-        </div>
+      <div>
+        <label>Description:</label>
+        <select
+          name="description"
+          value={eventDetails.description}
+          onChange={handleInputChange}
+        >
+          {predefinedDescriptions.map((desc, index) => (
+            <option key={index} value={desc}>
+              {" "}
+              {desc}{" "}
+            </option>
+          ))}
+        </select>
+        {eventDetails.description === "Custom..." && (
+          <input
+            type="text"
+            name="customDescription"
+            value={eventDetails.customDescription}
+            placeholder="Enter custom description"
+            onChange={handleInputChange}
+          />
+        )}
+      </div>
 
-        <div><label>Date (MM/DD/YYYY):</label>
-            <input type="text" name="date" value={eventDetails.date} onChange={handleInputChange}/>
+      <div>
+        <label>Date (MM/DD/YYYY):</label>
+        <input
+          type="text"
+          name="date"
+          value={eventDetails.date}
+          onChange={handleInputChange}
+        />
+      </div>
+      <button onClick={generateQRCode}>Generate QR Code</button>
+      {qrCodeContent && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <QRCode
+            value={qrCodeContent.value}
+            level={qrCodeContent.errorCorrectionLevel}
+          />
         </div>
-        <button onClick={generateQRCode}>Generate QR Code</button>
-            {qrCodeContent && (
-                <div>
-                    <QRCode value={qrCodeContent.value} level={qrCodeContent.errorCorrectionLevel}/>
-                </div>
-            )}
+      )}
     </div>
   );
 };
